@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  font-family: 'Kanit';
+  overflow-x: hidden;
+}
+
+
