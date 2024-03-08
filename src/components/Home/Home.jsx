@@ -39,7 +39,7 @@ export default function () {
   
 
   return (
-    <div className={ `w-full p-4 bg-gray-100 flex flex-col gap-10 ${darkMode ? 'bg-[#000] text-white' : 'bg-[#eee] text-black'}` }>
+    <div className={ `w-full p-4 bg-gray-100 flex flex-col gap-10 ${darkMode ? 'bg-[#060606] text-white' : 'bg-[#fff] text-black'}` }>
         <div className=' mt-5 p-2 '>
 
         <form class="flex justify-between p-5 max-[400px]:flex-col max-[400px]:gap-5">   
