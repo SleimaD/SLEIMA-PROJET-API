@@ -56,7 +56,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <AppLayout />, 
     children: [ 
-      { path: "/", element: <Home />, index: true },
+      { path: "/sleima-projet-api", element: <Home />, index: true },
       {path: "/country/:id" , element: <CountryDetails/>}
     ]
   }
