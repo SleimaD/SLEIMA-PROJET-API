@@ -85,18 +85,18 @@ export default function CountryDetails() {
                <h1> {countryDetails.name.official}</h1> 
 
                 <div className=' flex p-2 mt-5 mb-5 gap-12'>
-                    <div>
-                        <p> Native name : {countryDetails.name.common} </p> 
-                        <p>Population : {countryDetails.population}</p>
-                        <p>Region : {countryDetails.region}</p>
-                        <p>Sub Region : {countryDetails.subregion}</p>
-                        <p>Capital : {countryDetails.capital}</p>
+                    <div >
+                        <p className=' font-bold'> Native name : <span className=' font-normal'>{countryDetails.name.common} </span>  </p> 
+                        <p className=' font-bold'>Population : <span className=' font-normal'> {countryDetails.population}</span> </p>
+                        <p className=' font-bold'>Region : <span className=' font-normal'> {countryDetails.region}</span> </p>
+                        <p className=' font-bold'>Sub Region : <span className=' font-normal'> {countryDetails.subregion}</span> </p>
+                        <p className=' font-bold'>Capital : <span className=' font-normal'> {countryDetails.capital}</span> </p>
                     </div>
 
                     <div>
-                        <p>Top Level Domain : {countryDetails.tld}</p>
-                        <p>Currencies : {getCurrencies(countryDetails.currencies)}</p>
-                        <p>Languages : {getLanguages(countryDetails.languages)}</p> 
+                        <p className=' font-bold'>Top Level Domain : <span className=' font-normal'> {countryDetails.tld}</span> </p>
+                        <p className=' font-bold'>Currencies : <span className=' font-normal'>{getCurrencies(countryDetails.currencies)} </span> </p>
+                        <p className=' font-bold'>Languages : <span className=' font-normal'> {getLanguages(countryDetails.languages)}</span> </p> 
                     </div>
 
                 </div>
