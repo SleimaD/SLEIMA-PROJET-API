@@ -6,18 +6,18 @@ import { useNavigate } from 'react-router-dom';
 
 export default function () {
 
-  const [posts, setPosts] = useState([]);
-  const [selectedRegion, setSelectedRegion] = useState('All');
-  const [search, setSearch] = useState("");
+  const [posts, setPosts] = useState([]); // state to store country data
+  const [selectedRegion, setSelectedRegion] = useState('All'); // state for selected region
+  const [search, setSearch] = useState(""); // state for search input
   
 
-  const { darkMode } = useContext(DarkModeContext);
+  const { darkMode } = useContext(DarkModeContext); // Accessing dark mode state from context
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // hook for navigation
 
 
 
-  useEffect(() => {
+  useEffect(() => { // Effect hook to fetch data on component mount
     axios.get(' https://restcountries.com/v3.1/all ')
       .then(response => {
         setPosts(response.data);
@@ -25,21 +25,23 @@ export default function () {
       .catch(error => {
         console.error(error);
       });
-  }, []);
+  }, []);  // Empty dependency array means this effect runs once on mount
 
 
-  const countryClick = (id) => {
+  const countryClick = (id) => { // Function to navigate to country details page
     navigate(`/country/${id}`);
   };
 
+
+  // Filtering posts based on selected region and search input
   const filteredPosts = posts.filter(post =>
     (selectedRegion === 'All' || post.region === selectedRegion) &&
     post.name.common.toLowerCase().includes(search.toLowerCase())
-  );  
+  );   
   
 
   return (
-    <div className={ `w-full p-4 bg-gray-100 flex flex-col gap-10 ${darkMode ? 'bg-[#060606] text-white' : 'bg-[#fff] text-black'}` }>
+    <div className={ `w-full p-4 bg-gray-100 flex flex-col gap-10 ${darkMode ? 'bg-[#000] text-[#fff]' : 'bg-[#fff] text-[#000]'}` }>
         <div className=' mt-5 p-2 '>
 
         <form class="flex justify-between p-5 max-[400px]:flex-col max-[400px]:gap-5">   
@@ -51,9 +53,10 @@ export default function () {
                 </svg>
             </div>
             <input type="search" id="default-search" className="block w-[100%] p-4 ps-12 text-sm text-gray-500 border-[3px] border-gray-200 rounded-[20px] bg-gray-50 focus:ring-[#1c0f33] focus:border-[#1c0f33]  dark:border-[#4b3b66] dark:placeholder-gray-400 max-[400px]:dark:placeholder-[0.1rem] outline-[#1c0f33]" placeholder="Search for a country" required  onChange={(e)=> setSearch(e.target.value)} />
-            {/* <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button> */}
         </div>
 
+
+        {/* / Select input for region filter */}
           <select className="block w-[10%] max-[400px]:w-[50%] p-2 text-sm me-8 text-gray-500 border-[3px] border-gray-200 rounded-[20px]  bg-gray-50 focus:ring-[#1c0f33] focus:border-[#1c0f33] dark:border-[#4b3b66] dark:bg-[#3e2748] dark:text-white cursor-pointer "  value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}>
             <option value="" className=' ' disabled>Select Region</option>  

@@ -11,32 +11,33 @@ import "./CountryDetails.css"
 export default function CountryDetails() {
 
 
-    const [countryDetails, setCountryDetails] = useState(null);
+    const [countryDetails, setCountryDetails] = useState(null); // state to store country details
 
-    const { id } = useParams();
+    const { id } = useParams(); // Getting the country ID from the URL parameters
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect(() => { // Effect hook to fetch country details on component mount or ID change
         setCountryDetails(null);
-        axios.get(`https://restcountries.com/v3.1/name/${id}`)
+        axios.get(`https://restcountries.com/v3.1/name/${id}`) // Fetch country details by ID
           .then(response => {
-            setCountryDetails(response.data[0]); 
+            setCountryDetails(response.data[0]);  // Set country details with the first item from the response
           })
           .catch(error => {
             console.error('Error fetching country details:', error);
           });
-    }, [id]);
+    }, [id]); // Dependency array includes ID, so this effect runs whenever ID changes
 
 
     if (!countryDetails) {
         return <div>Loading...</div>;
     }
 
+    // Function to format languages into a string
     let getLanguages = (e) => {
         return Object.values(e).join(', '); 
     };
 
-    let getCurrencies = (currencies) => {
+    let getCurrencies = (currencies) => {  // Function to format currencies into a string
         return currencies
           ? Object.values(currencies).map(currency => `${currency.name} (${currency.symbol})`).join(', ')
           : '';
@@ -51,10 +52,14 @@ export default function CountryDetails() {
         </button>
       </div>
 
-    <div className=' flex flex-col gap-4 justify-center '>
+
+      {/* // Container for country details */}
+    <div className=' flex flex-col gap-4 justify-center '> 
         
         <div className='flex justify-center max-[400px]:flex-col'>
-            <div className="cube-container ml-0 w-40 h-40 sm:w-64 sm:h-64">
+
+        {/* // Container for 3D country flag */}
+            <div className="cube-container ml-0 w-40 h-40 sm:w-64 sm:h-64"> 
                 <div className="cube">
                     <div className="face front"><img src={countryDetails.flags.png} alt="" className=' h-[100%]' /></div>
                     <div className="face back">
